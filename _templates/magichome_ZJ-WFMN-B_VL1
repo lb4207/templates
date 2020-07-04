@@ -3,7 +3,7 @@ date_added: 2020-07-01
 title: MagicHome RGBW RF  
 model: ZJ-WFMN-B VL1
 image: /assets/images/magichome_ZJ-WFMN-B_VL1.jpg
-template: '{"NAME":"MagicHome RF","GPIO":[0,0,0,0,0,38,0,0,39,40,37,0,0],"FLAG":0,"BASE":18}' 
+template: '{"NAME":"MagicHome RF","GPIO":[0,0,0,0,106,38,0,0,39,40,37,0,0],"FLAG":0,"BASE":18}' 
 link: https://www.ebay.com.au/itm/Mini-Wifi-Bluetooth-Intelligent-Smart-Remote-Controller-RGBW-RGB-LED-Light-Strip/113864550205
 link2: https://www.aliexpress.com/item/33035745736.html
 mlink: 
@@ -12,4 +12,29 @@ category: light
 type: LED Controller
 standard: global
 ---
-Haven't got the RF Remote working but all colours are correct.
+The following rules will configure the 21 key RF Remote Control.
+Rule1
+on RfReceived#Data=0x51001 DO Wakeup endon 
+on RfReceived#Data=0x51003 DO Power Off endon 
+on RfReceived#Data=0x51006 DO dimmer + endon
+on RfReceived#Data=0x51009 DO dimmer - endon 
+on RfReceived#Data=0x51004 DO speed + endon 
+on RfReceived#Data=0x51007 DO speed - endon
+on RfReceived#Data=0x51005 DO backlog scheme 2; speed 2 endon
+on RfReceived#Data=0x51008 DO backlog scheme 3; speed 40 endon
+
+Rule2
+on RfReceived#Data=0x5100A DO color 1 endon 
+on RfReceived#Data=0x5100B DO color 2 endon 
+on RfReceived#Data=0x5100C DO color 3 endon 
+on RfReceived#Data=0x5100D DO color 4 endon 
+on RfReceived#Data=0x5100E DO color 5 endon 
+on RfReceived#Data=0x5100F DO color 6 endon 
+on RfReceived#Data=0x51010 DO color 7 endon 
+on RfReceived#Data=0x51011 DO color 8 endon 
+on RfReceived#Data=0x51012 DO color 9 endon 
+on RfReceived#Data=0x51013 DO color 10 endon 
+on RfReceived#Data=0x51014 DO color 11 endon
+on RfReceived#Data=0x51015 DO color #000000FF endon
+
+Change the Data value to that show on the Console for the buttons on your remote.
